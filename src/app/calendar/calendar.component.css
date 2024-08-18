@@ -1,0 +1,59 @@
+.container {
+  max-width: 100%;
+}
+
+h2 {
+  margin-bottom: 20px;
+}
+
+.full-calendar {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+}
+body {
+  display: flex;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  overflow: hidden; 
+}
+.sidebar-expanded {
+  width: 250px;
+  transition: width 0.5s ease;
+}
+.sidebar-collapsed {
+  width: 50px;
+  overflow: hidden;
+  transition: width 0.5s ease;
+}
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 15%;
+  background-color: #f8f9fa;
+}
+.main-content {
+  transition: margin-left 0.5s ease;
+}
+
+.fixed-navbar {
+  position: fixed;
+  top: 0;
+  left: 15.5%;
+  right: 0;
+  background-color: #0E46A3; 
+  z-index: 1000;
+  padding: 4px 10px;
+}
+
+.content {
+  margin-left: 15%;
+  padding-top: 80px; 
+  width:85%;
+  background-color:#0E46A3;
+  height:250px;
+  padding:20px;
+}

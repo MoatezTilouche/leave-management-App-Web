@@ -1,0 +1,328 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3 sidebar">
+            <app-sidebar></app-sidebar>
+        </div>
+        <br />
+                <br/>
+        <div class="col-md-9 content">
+           <div class="fixed-navbar"> <app-navbar></app-navbar></div>
+            <div class="container form-content mt-3">
+                <br />
+                <br/>
+                <div class="row ">
+                    <div [ngClass]="{'col-md-4': isEditing || isEditingPass, 'col-md-3': !isEditing && !isEditingPass}" class="transition-all duration-500 d-flex justify-content-center" style="background-color: #FEFAF6;">
+                        <div class="w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700" [ngStyle]="{'background-color': isEditing ? '#ee3c60' : 'white'}">
+                            <div class="flex justify-end px-4 pt-4">
+                              
+                             
+                                <!-- <div id="dropdown" class="z-10 hidden text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+                                    <ul class="py-2" aria-labelledby="dropdownButton">
+                                        <li>
+                                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white" (click)="toggleEdit()">Edit</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Export Data</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Delete</a>
+                                        </li>
+                                    </ul>
+                                </div> -->
+                            </div>
+                            <div class="flex flex-col items-center pb-10">
+                                <img class="w-24 h-24 mb-3 rounded shadow-lg" [src]="photo || (sexe === 'male' ? 'https://i.pinimg.com/564x/af/ed/7c/afed7cd07771c71d150681480ed59582.jpg' : 'https://i.pinimg.com/564x/87/ff/14/87ff14780b70043d7a2e2d21fcdb26c1.jpg')" alt="Admin photo">
+                                <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">{{name}}</h5>
+                                <br />
+                                <div class="flex items-center space-x-2">
+                                    <i class="bi bi-award-fill"></i>
+                                    <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">{{department}}</h5>
+                                </div>
+                                <br />
+                                <div class="flex items-center space-x-2">
+                                    <i class="bi bi-envelope-check" style="font-size: 10px;"></i>
+                                    <span class="text-sm text-gray-500 dark:text-gray-400">Email address</span>
+                                </div>
+                                <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">{{email}}</h5>
+                                <br />
+                                <div class="flex items-center space-x-2">
+                                    <i class="bi bi-calendar-check-fill" style="font-size: 10px;"></i>
+                                    <span class="text-sm text-gray-500 dark:text-gray-400">Date Inscription</span>
+                                </div>
+                                <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">{{dateInscription |date:'yyyy-MM-dd'}}</h5>
+
+                                <div class="flex mt-4 md:mt-6">
+                                    <a class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" (click)="toggleEdit()">Edit</a>
+                                    <a class="py-2 px-4 ms-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"(click)="toggleRequestReset()" >New Password</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-9" *ngIf="!isEditing && !isEditingPass">
+                        <div class="row">
+                            <div class="col-sm-4 mb-3 mb-sm-0">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Total Admins</h5>
+                                        <div class="row">
+                                            <div class="col-md-9">
+                                                <p class="card-text">{{adminCount}}</p>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <i class="bi bi-person-lines-fill icon1"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4 mb-3 mb-sm-0">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Pending Leave Requests</h5>
+                                        <div class="row">
+                                            <div class="col-md-9">
+                                                <p class="card-text">{{pendingCount}}</p>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <i class="bi bi-clock icon2"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4 mb-3 mb-sm-0">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Size of Department</h5>
+                                        <div class="row">
+                                            <div class="col-md-9">
+                                                <p class="card-text">{{depCount}}</p>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <i class="bi bi-bar-chart-line-fill icon3"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br/>
+                        
+                        <hr class="w-48 h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-200">
+
+                        <div class="row">
+                            
+                            <div class="col-md-6">
+                                <div class="row align-items-center d-flex">
+                                    <h2 class="text-3xl font-bold text-gray-900 dark:text-white ">Employees</h2>
+                                    <span class="text-xl text-gray-500 dark:text-gray-400 ">{{employeCount}}</span>
+                                </div>
+                            <div class="flex -space-x-4 rtl:space-x-reverse">
+                                <img *ngFor="let employe of employes.slice(0, 4)" class="w-10 h-10 border-2 border-white rounded-full dark:border-gray-800" [src]="employe.photo ? employe.photo : (employe.sexe === 'male' ? 'https://i.pinimg.com/564x/17/bd/44/17bd44db6eb35c02fa400fc9ddddbc63.jpg' : 'https://i.pinimg.com/564x/91/97/b1/9197b19611593aee1d1afc42f8ef02c8.jpg')" alt="{{ employe.name }} image">
+                                <a *ngIf="employeCount > 4" class="flex items-center justify-center w-10 h-10 text-xs font-medium text-white bg-gray-700 border-2 border-white rounded-full hover:bg-gray-600 dark:border-gray-800" (click)="navigateTo('/employes')" >+{{employeCount-4}}</a>
+                            </div>
+                            <div class="col-12 text-center">
+                                <button class="btn btn-primary" (click)="navigateTo('/employes')" >See all employees</button>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="row align-items-center d-flex">
+                                <h2 class="text-3xl font-bold text-gray-900 dark:text-white ">Admins</h2>
+                                <span class="text-xl text-gray-500 dark:text-gray-400 ">{{adminCount}}</span>
+                            </div>
+                        <div class="flex -space-x-4 rtl:space-x-reverse">
+                            <img *ngFor="let admin of admins.slice(0, 4)" class="w-10 h-10 border-2 border-white rounded-full dark:border-gray-800" [src]="admin.photo ? admin.photo : (admin.sexe === 'male' ? 'https://i.pinimg.com/564x/17/bd/44/17bd44db6eb35c02fa400fc9ddddbc63.jpg' : 'https://i.pinimg.com/564x/91/97/b1/9197b19611593aee1d1afc42f8ef02c8.jpg')" alt="{{ admin.name }} image">
+                            <a *ngIf="adminCount > 4" class="flex items-center justify-center w-10 h-10 text-xs font-medium text-white bg-gray-700 border-2 border-white rounded-full hover:bg-gray-600 dark:border-gray-800" (click)="navigateTo('/admins')" >
+                                +{{adminCount - 4}}
+                              </a>
+                              
+                        </div>
+                        <div class="col-12 text-center">
+                            <button class="btn btn-primary"(click)="navigateTo('/admins')" >See all Admins</button>
+                        </div>
+                    </div>
+                        </div>
+                    </div>
+                    <div class="col-md-8" *ngIf="isEditing">
+                        <form [formGroup]="adminForm" (ngSubmit)="onSubmit()" class="max-w-md mx-auto">
+                            <p class="max-w-lg text-xl font-semibold leading-normal text-gray-900 dark:text-white text-center">Edit Profile</p>
+                            <hr class="w-48 h-1 mx-auto my-4 bg-gray-500 border-0 rounded md:my-10 dark:bg-gray-700">
+                            <div class="text-center">
+                                <div class="relative">
+                                    <img class="w-24 h-24 rounded-full mx-auto" [src]="adminForm.get('photo')?.value || 'assets/utilisateur.png'" alt="Admin photo">
+                                    <button class="absolute right-0 bottom-0 bg-blue-500 text-white p-1 rounded-full">
+                                        <input type="file" class="opacity-0 absolute inset-0" (change)="onPhotoUpload($event)">
+                                        <i class="bi bi-camera-fill"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="relative z-0 w-full mb-5 group">
+                                        <input formControlName="name" type="text" id="name" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                                        <label for="name" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Name</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="relative z-0 w-full mb-5 group">
+                                        <input formControlName="email" type="email" id="email" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                                        <label for="email" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Email</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="relative z-0 w-full mb-5 group">
+                                        <input formControlName="age" type="number" id="age" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                                        <label for="age" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Age</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="relative z-0 w-full mb-5 group">
+                                        <select formControlName="sexe" id="sexe" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" required>
+                                            <option value="" disabled>Choose gender</option>
+                                            <option value="male">Male</option>
+                                            <option value="female">Female</option>
+                                        </select>
+                                        <label for="sexe" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Gender</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="relative z-0 w-full mb-5 group">
+                                        <input formControlName="permissions" type="text" id="permissions" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required readonly />
+                                        <label for="permissions" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Permissions</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="relative z-0 w-full mb-5 group">
+                                        <select formControlName="department" id="department" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" required>
+                                            <option value="" disabled>Choose department</option>
+                                            <option *ngFor="let dept of ['Sales', 'Data Science', 'Marketing', 'IT']" [value]="dept">{{dept}}</option>
+                                        </select>
+                                        <label for="department" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Department</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-end">
+                                <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Update</button>
+                            </div>
+                        </form>
+                    </div>
+
+       <!-- Update Password Section -->
+<!-- <div class="col-md-8" *ngIf="isEditingPass">
+    <form [formGroup]="passwordForm" (ngSubmit)="onSubmit()" class="max-w-md mx-auto">
+      <p class="max-w-lg text-xl font-semibold leading-normal text-gray-900 dark:text-white text-center">Change Password</p>
+      <hr class="w-48 h-1 mx-auto my-4 bg-gray-500 border-0 rounded md:my-10 dark:bg-gray-700">
+      
+      <div class="relative z-0 w-full mb-5 group">
+        <input formControlName="currentPassword" [type]="showPassword ? 'text' : 'password'" id="currentPassword" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+        <label for="currentPassword" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Current Password</label>
+        <button type="button" (click)="togglePasswordVisibility()" class="absolute right-2 top-3 text-gray-600 dark:text-gray-400">
+          <i [class]="showPassword ? 'bi bi-eye-slash' : 'bi bi-eye'"></i>
+        </button>
+      </div>
+  
+      <div class="relative z-0 w-full mb-5 group">
+        <input formControlName="newPassword" [type]="showPassword ? 'text' : 'password'" id="newPassword" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+        <label for="newPassword" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">New Password</label>
+      </div>
+  
+      <div class="relative z-0 w-full mb-5 group">
+        <input formControlName="confirmPassword" [type]="showConfirmPassword ? 'text' : 'password'" id="confirmPassword" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+        <label for="confirmPassword" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Confirm Password</label>
+        <button type="button" (click)="toggleConfirmPasswordVisibility()" class="absolute right-2 top-3 text-gray-600 dark:text-gray-400">
+          <i [class]="showConfirmPassword ? 'bi bi-eye-slash' : 'bi bi-eye'"></i>
+        </button>
+      </div>
+  
+      <div class="d-flex justify-content-end">
+        <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Update</button>
+      </div>
+    </form>
+  </div>
+   -->
+                </div>
+
+                <div class="modal fade" id="requestResetModal" tabindex="-1" aria-labelledby="requestResetModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="requestResetModalLabel">Request Password Reset</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          <form [formGroup]="resetRequestForm" (ngSubmit)="onRequestResetSubmit()">
+                            <div class="mb-3">
+                              <label for="email" class="form-label">Email address</label>
+                              <input type="email" class="form-control" id="email" formControlName="email" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Request Reset</button>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+               
+                <!-- Reset Password Modal -->
+                <div class="modal fade" id="resetPasswordModal" tabindex="-1" aria-labelledby="resetPasswordModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="resetPasswordModalLabel">Reset Password</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form [formGroup]="resetPasswordForm" (ngSubmit)="onResetPasswordSubmit()">
+                                    <div class="mb-3">
+                                        <label for="token" class="form-label">Token</label>
+                                        <input type="text" class="form-control" id="token" formControlName="token" required>
+                                    </div>
+                                    <div class="mb-3 position-relative">
+                                        <label for="newPassword" class="form-label">New Password</label>
+                                        <input type="{{showNewPassword ? 'text' : 'password'}}" class="form-control" id="newPassword" formControlName="newPassword" required>
+                                        <button type="button" (click)="toggleNewPasswordVisibility()" class="btn btn-sm btn-outline-secondary position-absolute end-0 top-0 mt-2 me-2" style="right: 10px; top: 50%; transform: translateY(-50%);">
+                                            <i [class]="showNewPassword ? 'bi bi-eye-slash' : 'bi bi-eye'"></i>
+                                        </button>
+                                    </div>
+                                    <div class="mb-3 position-relative">
+                                        <label for="confirmPassword" class="form-label">Confirm Password</label>
+                                        <input type="{{showConfirmPassword ? 'text' : 'password'}}" class="form-control" id="confirmPassword" formControlName="confirmPassword" required>
+                                        <button type="button" (click)="toggleConfirmPasswordVisibility()" class="btn btn-sm btn-outline-secondary position-absolute end-0 top-0 mt-2 me-2" style="right: 10px; top: 50%; transform: translateY(-50%);">
+                                            <i [class]="showConfirmPassword ? 'bi bi-eye-slash' : 'bi bi-eye'"></i>
+                                        </button>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Reset Password</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div *ngIf="showSuccessToast" id="toast-success" class="flex items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800" role="alert">
+                    <div class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-green-500 bg-green-100 rounded-lg dark:bg-green-800 dark:text-green-200">
+                        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
+                        </svg>
+                        <span class="sr-only">Check icon</span>
+                    </div>
+                    <div class="ms-3 text-sm font-normal">Admin updated successfully.</div>
+                    <button type="button" (click)="closeToast()" class="ms-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700" aria-label="Close">
+                        <span class="sr-only">Close</span>
+                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                        </svg>
+                    </button>
+                </div>
+                <ng-template #loading>
+                    <p>Loading...</p>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+</div>

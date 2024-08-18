@@ -1,0 +1,234 @@
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-md-2 sidebar">
+        <app-sidebar></app-sidebar>
+      </div>
+      <div class="col-md-10 content">
+        
+           
+       
+        <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+          <div class="flex flex-column sm:flex-row flex-wrap space-y-4 sm:space-y-0 items-center justify-between pb-4">
+            <div class="d-flex align-items-center justify-content-between pb-4">
+                <div class="col-md-8">
+                    <label for="table-search" class="sr-only">Search</label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-blue-700 text-white" id="search-icon">
+                            <i class="bi bi-search"></i>
+                        </span>
+                        <input type="text" id="table-search" class="form-control" placeholder="Search for items" [(ngModel)]="searchQuery" (ngModelChange)="applyFilters()">
+                    </div>
+                </div>
+                <div class="col-md-4 d-flex justify-content-between">
+                    <div class="dropdown me-2">
+                        <button id="dropdownPeriodButton" data-bs-toggle="dropdown" aria-expanded="false" class="btn btn-primary dropdown-toggle">
+                            <i class="bi bi-calendar-event me-2"></i>{{ filterPeriodText }}
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <input id="filter-period-1" type="radio" name="filter-period" (change)="setFilterPeriod('day', 'Last day')" class="form-check-input">
+                                <label for="filter-period-1" class="form-check-label ms-2">Last day</label>
+                            </li>
+                            <li>
+                                <input id="filter-period-2" type="radio" name="filter-period" (change)="setFilterPeriod('week', 'Last week')" class="form-check-input">
+                                <label for="filter-period-2" class="form-check-label ms-2">Last week</label>
+                            </li>
+                            <li>
+                                <input id="filter-period-3" type="radio" name="filter-period" (change)="setFilterPeriod('month', 'Last month')" class="form-check-input" checked>
+                                <label for="filter-period-3" class="form-check-label ms-2">Last month</label>
+                            </li>
+                            <li>
+                                <input id="filter-period-4" type="radio" name="filter-period" (change)="setFilterPeriod('year', 'Last year')" class="form-check-input">
+                                <label for="filter-period-4" class="form-check-label ms-2">Last year</label>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="dropdown me-2">
+                        <button id="dropdownTypeCongeButton" data-bs-toggle="dropdown" aria-expanded="false" class="btn btn-primary dropdown-toggle">
+                            <i class="bi bi-briefcase-fill me-2"></i>{{ filterTypeConge }}
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <input id="filter-type-1" type="radio" name="filter-type" (change)="setFilterTypeConge('All')" class="form-check-input">
+                                <label for="filter-type-1" class="form-check-label ms-2">All</label>
+                            </li>
+                            <li>
+                                <input id="filter-type-2" type="radio" name="filter-type" (change)="setFilterTypeConge('Maladie')" class="form-check-input">
+                                <label for="filter-type-2" class="form-check-label ms-2">Maladie</label>
+                            </li>
+                            <li>
+                                <input id="filter-type-3" type="radio" name="filter-type" (change)="setFilterTypeConge('Vacation')" class="form-check-input">
+                                <label for="filter-type-3" class="form-check-label ms-2">Vacation</label>
+                            </li>
+                            <li>
+                                <input id="filter-type-4" type="radio" name="filter-type" (change)="setFilterTypeConge('Evénements familiaux')" class="form-check-input">
+                                <label for="filter-type-4" class="form-check-label ms-2">Evénements familiaux</label>
+                            </li>
+                            <li>
+                                <input id="filter-type-5" type="radio" name="filter-type" (change)="setFilterTypeConge('Parental')" class="form-check-input">
+                                <label for="filter-type-5" class="form-check-label ms-2">Parental</label>
+                            </li>
+                            <li>
+                                <input id="filter-type-6" type="radio" name="filter-type" (change)="setFilterTypeConge('Formation')" class="form-check-input">
+                                <label for="filter-type-6" class="form-check-label ms-2">Formation</label>
+                            </li>
+                            <li>
+                                <input id="filter-type-7" type="radio" name="filter-type" (change)="setFilterTypeConge('Annuel')" class="form-check-input">
+                                <label for="filter-type-7" class="form-check-label ms-2">Annuel</label>
+                            </li>
+                            <li>
+                                <input id="filter-type-8" type="radio" name="filter-type" (change)="setFilterTypeConge('Maternité')" class="form-check-input">
+                                <label for="filter-type-8" class="form-check-label ms-2">Maternité</label>
+                            </li>
+                            <li>
+                                <input id="filter-type-9" type="radio" name="filter-type" (change)="setFilterTypeConge('Autre')" class="form-check-input">
+                                <label for="filter-type-9" class="form-check-label ms-2">Autre</label>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="dropdown">
+                        <button id="dropdownStatusButton" data-bs-toggle="dropdown" aria-expanded="false" class="btn btn-primary dropdown-toggle">
+                            <i class="bi bi-shield-check me-2"></i>{{ filterStatus }}
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <input id="filter-status-1" type="radio" name="filter-status" (change)="setFilterStatus('All')" class="form-check-input">
+                                <label for="filter-status-1" class="form-check-label ms-2">All</label>
+                            </li>
+                            <li>
+                                <input id="filter-status-2" type="radio" name="filter-status" (change)="setFilterStatus('accepted')" class="form-check-input">
+                                <label for="filter-status-2" class="form-check-label ms-2">Accepted</label>
+                            </li>
+                            <li>
+                                <input id="filter-status-3" type="radio" name="filter-status" (change)="setFilterStatus('pending')" class="form-check-input">
+                                <label for="filter-status-3" class="form-check-label ms-2">Pending</label>
+                            </li>
+                            <li>
+                                <input id="filter-status-4" type="radio" name="filter-status" (change)="setFilterStatus('rejected')" class="form-check-input">
+                                <label for="filter-status-4" class="form-check-label ms-2">Rejected</label>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+          </div>
+          <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+            <thead class="text-xs text-white uppercase bg-blue-700 dark:bg-blue-700 dark:text-gray-400">
+              <tr>
+                <th scope="col" class="p-4">
+                  <div class="flex items-center">
+                    <input id="checkbox-all-search" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                    <label for="checkbox-all-search" class="sr-only">checkbox</label>
+                  </div>
+                </th>
+                <th scope="col" class="px-6 py-3">Employee</th>
+                <th scope="col" class="px-6 py-3">Leave Type</th>
+                <th scope="col" class="px-6 py-3">Start Date</th>
+                <th scope="col" class="px-6 py-3">End Date</th>
+                <th scope="col" class="px-6 py-3">Status</th>
+                <th scope="col" class="px-6 py-3">View request</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of paginatedConges" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                <td class="w-4 p-4">
+                  <div class="flex items-center">
+                    <input id="checkbox-table-search-1" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                    <label for="checkbox-table-search-1" class="sr-only">checkbox</label>
+                  </div>
+                </td>
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                  <span [ngClass]="{
+                    'text-green-500': item.conge.typeConge === 'Vacation',
+                    'text-purple-500': item.conge.typeConge === 'Evénements familiaux',
+                    'text-red-500': item.conge.typeConge === 'Maladie',
+                    'text-yellow-500': item.conge.typeConge === 'Parental',
+                    'text-blue-500': item.conge.typeConge === 'Formation',
+                    'text-orange-500': item.conge.typeConge === 'Annuel',
+                    'text-pink-500': item.conge.typeConge === 'Maternité',
+                    'text-gray-500': item.conge.typeConge === 'Autre'
+                  }">
+                    <i [ngClass]="{
+                      'bi bi-sun': item.conge.typeConge === 'Vacation',
+                      'bi bi-heart': item.conge.typeConge === 'Maladie',
+                      'bi bi-people': item.conge.typeConge === 'Evénements familiaux',
+                      'bi bi-person-plus': item.conge.typeConge === 'Parental',
+                      'bi bi-book': item.conge.typeConge === 'Formation',
+                      'bi bi-calendar-check': item.conge.typeConge === 'Annuel',
+                      'bi bi-gender-female': item.conge.typeConge === 'Maternité',
+                      'bi bi-three-dots': item.conge.typeConge === 'Autre',
+                    }"></i>
+                  </span>
+                  <ng-container *ngIf="item.employeName && item.employeName.name; else unknownName">
+                    {{ item.employeName.name }}
+                  </ng-container>
+                  <ng-template #unknownName>
+                    {{ item.employeName || 'Unknown' }}
+                  </ng-template>
+                </th>
+                <td class="px-6 py-4">{{ item.conge.typeConge }}</td>
+                <td class="px-6 py-4">{{ item.conge.dateDebut | date:'yyyy-MM-dd' }}</td>
+                <td class="px-6 py-4">{{ item.conge.dateFin | date:'yyyy-MM-dd' }}</td>
+                <td class="px-6 py-4" style="margin: 50px;">
+                  <span [ngClass]="{
+                    'text-green-500': item.conge.statut === 'accepted',
+                    'text-yellow-500': item.conge.statut === 'pending',
+                    'text-red-500': item.conge.statut === 'rejected'
+                  }">
+                    <i [ngClass]="{
+                      'bi bi-check-circle-fill': item.conge.statut === 'accepted',
+                      'bi bi-hourglass-split': item.conge.statut === 'pending',
+                      'bi bi-ban-fill': item.conge.statut === 'rejected'
+                    }"></i>
+                  </span>
+                </td>
+                <td class="px-6 py-4 d-flex  ">
+                  <div class="col-sm-8">
+                    <button type="button" (click)="viewCongeDetails(item.conge._id, item.employeName._id)" class="btn btn-outline-primary text-center">
+                      <i class="bi bi-eye"></i>
+                    </button>
+                  </div>
+                  <button type="button" *ngIf="permissions !='R'" (click)="deleteConge(item.conge._id)" class="btn btn-outline-danger text-center">
+                  <i class="bi bi-trash3"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="d-flex justify-content-end mt-4">
+            <nav aria-label="Page navigation">
+              <ul class="pagination">
+                <!-- Previous button -->
+                <li class="page-item" [ngClass]="{ 'disabled': currentPage === 1 }">
+                  <a class="page-link"  aria-label="Previous" (click)="changePage(currentPage - 1)">
+                    <span aria-hidden="true">&laquo;</span>
+                  </a>
+                </li>
+          
+                <!-- Page numbers -->
+                <li *ngFor="let page of [].constructor(Math.ceil(filteredConges.length / itemsPerPage)); let i = index" 
+                    class="page-item" 
+                    [ngClass]="{ 'active': currentPage === i + 1 }">
+                  <a class="page-link"  (click)="changePage(i + 1)">
+                    {{ i + 1 }}
+                  </a>
+                </li>
+          
+                <!-- Next button -->
+                <li class="page-item" [ngClass]="{ 'disabled': currentPage === Math.ceil(filteredConges.length / itemsPerPage) }">
+                  <a class="page-link" href="#" aria-label="Next" (click)="changePage(currentPage + 1)">
+                    <span aria-hidden="true">&raquo;</span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+          
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  

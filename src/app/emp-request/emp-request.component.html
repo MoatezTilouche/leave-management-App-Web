@@ -1,0 +1,157 @@
+<div class="container-fluid vh-100">
+  <div class="row h-100">
+    <div class="col-md-3 sidebar">
+      <app-sidebar></app-sidebar>
+    </div>
+    <div class="col-md-9 content">
+      <app-navbar></app-navbar>
+
+      <div class="container form-content mt-3">
+        <div *ngIf="employe$ | async as employe; else loading">
+          <div class="position-absolute top-0 end-0">
+            <i class="bi bi-trash3-fill"></i>
+          </div>
+          <div class="row align-items-center mb-4">
+            <div class="col-md-3 text-center">
+              <img
+                class="rounded float-start"
+                [src]="employe.photo ? employe.photo : (employe.sexe === 'male' ? 'https://i.pinimg.com/564x/af/ed/7c/afed7cd07771c71d150681480ed59582.jpg' : 'https://i.pinimg.com/564x/87/ff/14/87ff14780b70043d7a2e2d21fcdb26c1.jpg')"
+              />
+            </div>
+            <div class="col-md-9">
+              <h2>{{ employe.name }}</h2>
+              <p class="mb-2"><i class="bi bi-envelope me-2"></i> {{ employe.email }}</p> <!-- Added me-2 for spacing -->
+              <p class="mb-2"> <i class="bi bi-award-fill me-2"></i>
+                {{ employe.department }}</p> <!-- Added me-2 for spacing -->
+            </div>
+          </div>
+          <div *ngIf="conge$ | async as conge; else loading">
+            <h3 class="text-center text-primary text-lg mb-4 fw-medium fs-4">Leave Request Details</h3>
+            <div class="position-relative mb-4">
+              <div class="position-absolute top-0 end-0">
+                <p class="fs-5">
+                  <span
+                    [ngClass]="{
+                      'text-green-500': conge.statut === 'accepted',
+                      'text-yellow-500': conge.statut === 'pending',
+                      'text-red-500': conge.statut === 'rejected'
+                    }"
+                  >
+                    <i
+                      [ngClass]="{
+                        'bi bi-check-circle-fill': conge.statut === 'accepted',
+                        'bi bi-hourglass-split': conge.statut === 'pending',
+                        'bi bi-ban-fill': conge.statut === 'rejected'
+                      }"
+                      class="me-2"
+                    ></i> <!-- Added me-2 for spacing -->
+                    {{ conge.statut }}
+                  </span>
+                </p>
+              </div>
+            </div>
+            <div class="row justify-content-center mb-4">
+              <div class="col-md-8">
+                <div class="mb-4">
+                  <p class="fs-6 mb-2"><i class="bi bi-suitcase me-2"></i> <strong class="me-2">Leave Type:</strong> <!-- Added me-2 for spacing -->
+                    <span
+                      [ngClass]="{
+                        'text-green-500': conge.typeConge === 'Vacation',
+                        'text-purple-500': conge.typeConge === 'Evénements familiaux',
+                        'text-red-500': conge.typeConge === 'Maladie',
+                        'text-yellow-500': conge.typeConge === 'Parental',
+                        'text-blue-500': conge.typeConge === 'Formation',
+                        'text-orange-500': conge.typeConge === 'Annuel',
+                        'text-pink-500': conge.typeConge === 'Maternité',
+                        'text-gray-500': conge.typeConge === 'Autre'
+                      }"
+                      class="me-2"
+                    >
+                      <i
+                        [ngClass]="{
+                          'bi bi-sun': conge.typeConge === 'Vacation',
+                          'bi bi-heart': conge.typeConge === 'Maladie',
+                          'bi bi-people': conge.typeConge === 'Evénements familiaux',
+                          'bi bi-person-plus': conge.typeConge === 'Parental',
+                          'bi bi-book': conge.typeConge === 'Formation',
+                          'bi bi-calendar-check': conge.typeConge === 'Annuel',
+                          'bi bi-gender-female': conge.typeConge === 'Maternité',
+                          'bi bi-three-dots': conge.typeConge === 'Autre'
+                        }"
+                        class="me-2"
+                      ></i> <!-- Added me-2 for spacing -->
+                      {{ conge.typeConge }}
+                    </span>
+                  </p>
+                </div>
+                <div class="mb-4">
+                  <p class="fs-7 mb-2"><i class="bi bi-calendar me-2"></i> <strong>Start Date:</strong> <!-- Added me-2 for spacing --> {{ conge.dateDebut | date: 'yyyy-MM-dd' }}</p>
+                </div>
+                <div class="mb-4">
+                  <p class="fs-7 mb-2"><i class="bi bi-calendar me-2"></i> <strong>End Date:</strong> <!-- Added me-2 for spacing --> {{ conge.dateFin | date: 'yyyy-MM-dd' }}</p>
+                </div>
+                <div class="mb-4">
+                  <p class="fs-7 mb-2"><i class="bi bi-clock me-2"></i> <strong>Duration:</strong> <!-- Added me-2 for spacing --> {{ calculateDuration(conge.dateDebut, conge.dateFin) }} days</p>
+                </div>
+                <div class="mb-4">
+                  <p class="fs-7 mb-2"><i class="bi bi-chat-left-text me-2"></i> <strong>Comment:</strong> <!-- Added me-2 for spacing --> {{ conge.commentaire }}</p>
+                </div>
+                <div class="mb-4">
+                  <p class="fs-7 mb-2" *ngIf="conge.attestation; else noAttestation">
+                    <i class="bi bi-file-earmark me-2"></i> <strong>Attestation:</strong> <!-- Added me-2 for spacing --> <a [href]="conge.attestation" target="_blank">View Document</a>
+                  </p>
+                  <ng-template #noAttestation>
+                    <i class="bi bi-file-earmark me-2"></i> <strong>Attestation:</strong> <!-- Added me-2 for spacing --> No attestation
+                  </ng-template>
+                </div>
+                <div class="mb-4">
+                  <label for="adminComment" class="form-label mb-2"><i class="bi bi-pencil me-2"></i> <strong>Admin Comment:</strong> <!-- Added me-2 for spacing --></label>
+                  <textarea id="adminComment" class="form-control" rows="3"></textarea>
+                </div>
+              </div>
+            </div>
+            <div class="row mt-4" *ngIf="conge.statut === 'pending'">
+              <div class="col-md-12 text-end">
+                <button class="btn btn-outline-success me-2" (click)="acceptConge(conge._id)">Accept</button>
+                <button class="btn btn-outline-danger" (click)="rejectConge(conge._id)">Reject</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="showSuccessToast" id="toast-success" class="flex items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800" role="alert">
+          <div class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-green-500 bg-green-100 rounded-lg dark:bg-green-800 dark:text-green-200">
+            <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
+            </svg>
+            <span class="sr-only">Check icon</span>
+          </div>
+          <div class="ms-3 text-sm font-normal">Leave request has been accepted.</div>
+          <button type="button" (click)="closeToastS()" class="ms-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700" aria-label="Close">
+            <span class="sr-only">Close</span>
+            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+            </svg>
+          </button>
+        </div>
+        <div *ngIf="showDeletedToast" id="toast-danger" class="flex items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800" role="alert">
+          <div class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-red-500 bg-red-100 rounded-lg dark:bg-red-800 dark:text-red-200">
+            <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 11.793a1 1 0 1 1-1.414 1.414L10 11.414l-2.293 2.293a1 1 0 0 1-1.414-1.414L8.586 10 6.293 7.707a1 1 0 0 1 1.414-1.414L10 8.586l2.293-2.293a1 1 0 0 1 1.414 1.414L11.414 10l2.293 2.293Z" />
+            </svg>
+            <span class="sr-only">Error icon</span>
+          </div>
+          <div class="ms-3 text-sm font-normal">Leave Request has been rejected.</div>
+          <button type="button" (click)="closeToastD()" class="ms-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700" aria-label="Close">
+            <span class="sr-only">Close</span>
+            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+            </svg>
+          </button>
+        </div>
+        <ng-template #loading>
+          <p>Loading...</p>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>

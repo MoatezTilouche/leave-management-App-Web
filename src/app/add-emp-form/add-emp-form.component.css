@@ -1,0 +1,120 @@
+body {
+  display: flex;
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 15%;
+  background-color: #f8f9fa;
+}
+
+.content {
+  margin-left: 15%;
+  width: 85%;
+  padding: 20px;
+  background-color: #0E46A3;
+  height:250px;
+}
+.fixed-navbar {
+  position: fixed;
+  top: 0;
+  left: 15.5%;
+  right: 0;
+  background-color: #0E46A3; 
+  z-index: 1000;
+  padding: 4px 10px;
+}
+
+.form-content {
+  background-color: white;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ffffff; 
+  padding: 20px;
+  border-radius: 15px;
+  width: 60%; 
+  margin: auto;
+}
+
+.form-content form {
+  padding: 15px;
+}
+
+.form-content form .group {
+  margin-bottom: 20px;
+}
+
+.form-content form .group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-content form .group input,
+.form-content form .group select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.form-content form .group button {
+  display: block;
+  margin-top: 10px;
+}
+
+.form-content form .d-flex {
+  margin-top: 20px;
+}
+
+#toast-success {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+@media (max-width: 992px) {
+  .sidebar {
+    width: 20%;
+  }
+  .fixed-navbar {
+    left: 20%;
+  }
+  .content {
+    margin-left: 20%;
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 25%;
+  }
+  .fixed-navbar {
+    left: 25%;
+  }
+  .content {
+    margin-left: 25%;
+  }
+}
+
+@media (max-width: 576px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  .fixed-navbar {
+    left: 0;
+    top: 0;
+    width: 100%;
+    padding: 10px;
+  }
+  .content {
+    margin-left: 0;
+    padding-top: 60px;
+    height: calc(100vh - 60px);
+  }
+}

@@ -1,0 +1,158 @@
+body {
+  display: flex;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  overflow: hidden; 
+}
+.sidebar-expanded {
+  width: 250px;
+  transition: width 0.5s ease;
+}
+.sidebar-collapsed {
+  width: 50px;
+  overflow: hidden;
+  transition: width 0.5s ease;
+}
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 15%;
+  background-color: #f8f9fa;
+}
+.main-content {
+  transition: margin-left 0.5s ease;
+}
+
+.fixed-navbar {
+  position: fixed;
+  top: 0;
+  left: 15.5%;
+  right: 0;
+  background-color: #0E46A3; 
+  z-index: 1000;
+  padding: 4px 10px;
+}
+
+.content {
+  margin-left: 15%;
+  padding-top: 80px; 
+  width:85%;
+  height:50px;
+}
+
+.content-wrapper {
+  padding: 20px;
+}
+
+.card {
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  width: 100%;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-title {
+  margin-bottom: 10px;
+  font-size: 15px;
+  color: grey;
+}
+
+.card-text {
+  flex-grow: 1;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.stat-change {
+  color: green;
+  display: block;
+  text-align: right;
+  font-size: 10px;
+}
+
+.btn-outline-primary {
+  align-self: flex-start;
+}
+
+.icon1, .icon2, .icon3 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  color: white;
+}
+
+.icon1 {
+  background: linear-gradient(90deg, #ee3c60 60%, #ee3c60 40%);
+}
+
+.icon2 {
+  background: linear-gradient(90deg, #fba140 60%, #fba140 40%);
+}
+
+.icon3 {
+  background: linear-gradient(90deg, #13c0f3 60%, #13c0f3 40%);
+}
+
+.equal-height {
+  height: 480px;
+ 
+}
+
+.dashboard .row {
+  margin-bottom: 10px;
+}
+
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+  .sidebar {
+    width: 20%;
+  }
+  .fixed-navbar {
+    left: 20%;
+  }
+  .content {
+    margin-left: 20%;
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 25%;
+  }
+  .fixed-navbar {
+    left: 25%;
+  }
+  .content {
+    margin-left: 25%;
+  }
+}
+
+@media (max-width: 576px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  .fixed-navbar {
+    left: 0;
+    top: 0;
+    width: 100%;
+    padding: 10px;
+  }
+  .content {
+    margin-left: 0;
+    padding-top: 60px;
+    height: calc(100vh - 60px);
+  }
+}

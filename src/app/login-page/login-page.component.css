@@ -1,0 +1,101 @@
+body, html {
+  height: 100%;
+}
+
+.container-fluid {
+  padding: 0;
+}
+
+.bg-primary {
+  background-color: #1E40AF !important; /* Adjust as needed */
+}
+
+.bg-light {
+  background-color: #ffffff !important;
+}
+
+h1.display-4 {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.lead {
+  font-size: 1.25rem;
+  font-weight: 300;
+}
+
+.btn-primary {
+  font-size: 1rem;
+  padding: 0.75rem 1.25rem;
+}
+
+.btn-lg {
+  width: 100%;
+}
+
+.icon-image {
+  width: 80px; 
+  height: 80px; 
+  color:white;
+  margin-bottom: 1rem;
+}
+body, html {
+  height: 100%;
+}
+
+.container-fluid {
+  padding: 0;
+}
+
+.bg-primary {
+  background-color: #1E40AF !important; /* Adjust as needed */
+}
+
+.bg-light {
+  background-color: #ffffff !important;
+}
+
+h1.display-4 {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.lead {
+  font-size: 1.25rem;
+  font-weight: 300;
+}
+
+.btn-primary {
+  font-size: 1rem;
+  padding: 0.75rem 1.25rem;
+}
+
+.btn-lg {
+  width: 100%;
+}
+
+.icon-image {
+  width: 80px; 
+  height: 80px; 
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.photo-image {
+  width: 300px; /* Adjust as needed */
+  height: auto; /* Maintain aspect ratio */
+}
+
+.option-outline-primary {
+  border: 1px solid #ffffff; 
+  color: black; 
+  padding: 5px;
+  border-radius: 4px;
+  margin: 2px 0;
+  cursor: pointer;
+}
+
+.option-outline-primary:hover {
+  background-color: #0d6efd;
+  color: white; 
+}

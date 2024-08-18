@@ -1,0 +1,78 @@
+body {
+    display: flex;
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 15%;
+    background-color: #f8f9fa;
+  }
+  
+  .content {
+    margin-left: 15%;
+    background-color: #0E46A3;
+    height:250px;
+    width: 85%;
+    padding: 25px;
+  }
+  .title-employees-list {
+    font-size: 28px;
+      color: white;
+      padding: 15px 30px;
+      border-radius: 10px;
+      background-color: #ee3c60;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      display: inline-block;
+      margin: 20px auto;
+  }
+  .card {
+    background-color: white;
+  }
+  .card-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .d-flex {
+    display: flex;
+  }
+  .justify-content-between {
+    justify-content: space-between;
+  }
+  .align-items-center {
+    align-items: center;
+  }
+  
+  @media (max-width: 992px) {
+    .sidebar {
+      width: 20%;
+    }
+    .fixed-navbar {
+      left: 20%;
+    }
+    .content {
+      margin-left: 20%;
+    }
+  }
+  @media (max-width: 576px) {
+    .sidebar {
+      width: 100%;
+      height: auto;
+      position: relative;
+    }
+    .fixed-navbar {
+      left: 0;
+      top: 0;
+      width: 100%;
+      padding: 10px;
+    }
+    .content {
+      margin-left: 0;
+      padding-top: 60px;
+      height: calc(100vh - 60px);
+    }
+  }

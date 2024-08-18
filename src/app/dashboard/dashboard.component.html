@@ -1,0 +1,107 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-2 sidebar">
+      <app-sidebar></app-sidebar>
+    </div>
+    <div class="col-md-10 content" [ngClass]="{'content-expanded': isCollapsed, 'content-collapsed': !isCollapsed}">
+      <div class="fixed-navbar">
+        <app-navbar></app-navbar>
+      </div>
+      <div class="content-wrapper mt-2">
+        <div class="dashboard">
+          <div class="row">
+            <div class="col-sm-4 mb-3 mb-sm-0">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Total Employees</h5>
+                  <div class="row">
+                    <div class="col-md-9">
+                      <p class="card-text">{{employeCount}}</p>
+                    </div>
+                    <div class="col-md-3">
+                      <i class="bi bi-person-lines-fill icon1"></i>
+                    </div>
+                  </div>
+                  <br/>
+                  <div class="row">
+                    <div class="col-md-7">
+                      <button class="btn btn-outline-primary" (click)="navigateTo('/employes')">View all</button>
+                    </div>
+                    <div class="col-md-5">
+                      <span class="stat-change">↑ 3 Since last year</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-4 mb-3 mb-sm-0">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Pending Leave Requests</h5>
+                  <div class="row">
+                    <div class="col-md-9">
+                      <p class="card-text">{{pendingCount}}</p>
+                    </div>
+                    <div class="col-md-3">
+                      <i class="bi bi-clock icon2"></i>
+                    </div>
+                  </div>
+                  <br/>
+                  <div class="row">
+                    <div class="col-md-7">
+                      <a (click)="navigateTo('/pendingleaves')" class="btn btn-outline-primary">View all</a>
+                    </div>
+                    <div class="col-md-5">
+                      <span class="stat-change">↑ 2.48% Since last month</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-4 mb-3 mb-sm-0">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Average Leave Days</h5>
+                  <div class="row">
+                    <div class="col-md-9">
+                      <p class="card-text">{{avergeDaysFormatted}}</p>
+                    </div>
+                    <div class="col-md-3">
+                      <i class="bi bi-bar-chart-line-fill icon3"></i>
+                    </div>
+                  </div>
+                  <br/>
+                  <div class="row">
+                    <div class="col-md-7">
+                      <a  class="btn btn-outline-primary" (click)="navigateTo('/calendar')">View all</a>
+                    </div>
+                    <div class="col-md-5">
+                      <span class="stat-change">↑ 2.48% Since last month</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row mt-3">
+            <div class="col-md-6">
+              <app-piechart></app-piechart>
+            </div>
+            <div class="col-md-6">
+              <app-request-chart></app-request-chart>
+            </div>
+          </div>
+          <hr class="w-60 h-1 mx-auto my-4 bg-gray-800 border-0 rounded md:my-10 dark:bg-gray-700">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="equal-height">
+                <app-employesdash></app-employesdash>
+              </div>
+            </div>
+          </div>
+          <hr>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

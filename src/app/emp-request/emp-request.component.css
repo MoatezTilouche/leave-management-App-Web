@@ -1,0 +1,80 @@
+body {
+  display: flex;
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+.word-spaced {
+  word-spacing: 0.2em;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 15%;
+  background-color: #f8f9fa;
+}
+
+.content {
+  margin-left: 15%;
+  width: 85%;
+  padding: 20px;
+  background-color: #0E46A3;
+  height:250px;
+  
+}
+
+.form-content {
+  background-color: white;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ffffff;
+  padding: 20px;
+  border-radius: 15px;
+  width: 80%;
+  margin: auto;
+}
+
+.bi {
+  display: inline-block;
+  font-family: "bootstrap-icons";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1rem;
+  line-height: 1;
+  text-align: center;
+  text-transform: none;
+  vertical-align: -0.125em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+img{
+  height:250px;
+  width:200px;
+}
+
+.bi-check-circle-fill { content: "\f058"; }
+.bi-hourglass-split { content: "\f253"; }
+.bi-ban-fill { content: "\f05e"; }
+.bi-sun { content: "\f185"; }
+.bi-heart { content: "\f004"; }
+.bi-people { content: "\f0c0"; }
+.bi-person-plus { content: "\f234"; }
+.bi-book { content: "\f02d"; }
+.bi-calendar-check { content: "\f274"; }
+.bi-gender-female { content: "\f182"; }
+.bi-three-dots { content: "\f141"; }
+
+
+#toast-success {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+#toast-danger {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+}

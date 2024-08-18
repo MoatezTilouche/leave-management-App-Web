@@ -1,0 +1,151 @@
+body {
+  display: flex;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  overflow: hidden; 
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 15%;
+  background-color: #f8f9fa;
+}
+.fixed-navbar {
+  position: fixed;
+  top: 0;
+  left: 15.5%;
+  right: 0;
+  background-color: #0E46A3; 
+  z-index: 1000;
+  padding: 4px 10px;
+}
+
+
+.content {
+  margin-left: 15%;
+  width: 85%;
+  padding: 25px;
+  background-color: #0E46A3;
+  height: 250px;
+ 
+}
+
+.form-content {
+  background-color: white;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ffffff; 
+  padding: 20px;
+  border-radius: 15px;
+  width: 100%; 
+  margin: auto;
+}
+
+.form-content form {
+  padding: 15px;
+}
+
+.form-content form .group {
+  margin-bottom: 20px;
+}
+
+.form-content form .group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-content form .group input,
+.form-content form .group select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.form-content form .group button {
+  display: block;
+  margin-top: 10px;
+}
+
+.form-content form .d-flex {
+  margin-top: 20px;
+}
+
+#toast-success {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+.card {
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  width: 100%;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-title {
+  margin-bottom: 10px;
+  font-size: 20px; /* Augmenter la taille du titre */
+  color: grey;
+}
+
+.card-text {
+  flex-grow: 1;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.icon1, .icon2, .icon3 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  color: white;
+}
+
+.icon1 {
+  background: linear-gradient(90deg, #ee3c60 60%, #ee3c60 40%);
+}
+
+.icon2 {
+  background: linear-gradient(90deg, #fba140 60%, #fba140 40%);
+}
+
+.icon3 {
+  background: linear-gradient(90deg, #13c0f3 60%, #13c0f3 40%);
+}
+
+@media (max-width: 992px) {
+  .sidebar {
+      width: 20%;
+  }
+}
+
+@media (max-width: 576px) {
+  .sidebar {
+      width: 100%;
+      height: auto;
+      position: relative;
+  }
+}
+
+.text-center {
+  text-align: center;
+}
+.col-12.col-sm-6.col-lg-4.mb-4 {
+  margin-bottom: 2px; /* Réduisez la valeur selon vos besoins */
+}
+figure {
+  margin-bottom: 5px; /* Réduisez la valeur selon vos besoins */
+}

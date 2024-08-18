@@ -1,0 +1,70 @@
+<!-- login-page.component.html -->
+<div class="container-fluid vh-100">
+  <div class="row h-100">
+    <div class="col-md-6 d-flex flex-column justify-content-center align-items-center text-white bg-primary p-5">
+      <div class="text-center">
+        <br /><br /><br />
+        
+        <br /><br /><br /><br />
+        <h1 class="display-4">Hello User! 👋</h1>
+        <p class="lead">This website helps you coordinate with your employees and helps you manage their leave requests easily!</p>
+      </div>
+      <div class="mt-auto">
+        <p class="text-center">© Developed By Moatez Tilouche</p>
+      </div>
+    </div>
+
+    <div class="col-md-6 d-flex flex-column justify-content-center align-items-center bg-light">
+      <div class="w-75">
+        <div class="mb-3 d-flex justify-content-center align-items-center">
+          <img src="assets/logo.png" alt="Photo" class="photo-image">
+        </div>
+        <br /><br />
+        <h2 class="mb-3 text-center">Welcome Back!</h2>
+        <form [formGroup]="loginForm" (ngSubmit)="login()">
+          <div class="form-group">
+            <div class="form-floating mb-3 position-relative">
+              <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" formControlName="email">
+              <label for="floatingInput">Email address</label>
+            </div>
+          </div>
+          <div class="form-group position-relative">
+            <div class="form-floating">
+              <input [type]="showPassword ? 'text' : 'password'" class="form-control" id="floatingPassword" placeholder="Password" formControlName="password">
+              <label for="floatingPassword">Password</label>
+            </div>
+            <button type="button" (click)="togglePasswordVisibility()" class="position-absolute top-50 end-0 translate-middle-y me-3 btn ">
+              <i [class]="showPassword ? 'bi bi-eye-slash' : 'bi bi-eye'"></i>
+            </button>
+          </div>
+          <br />
+          <button type="submit" class="btn btn-primary btn-lg btn-block">Login Now</button>
+          <div class="mt-3 text-center">
+            <a (click)="openForgotPasswordModal()">Forget password? Click here</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Forgot Password Modal -->
+  <div class="modal fade" id="forgotPasswordModal" tabindex="-1" aria-labelledby="forgotPasswordModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="forgotPasswordModalLabel">Forgot Password</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="forgotPasswordForm" (ngSubmit)="submitForgotPassword()">
+            <div class="form-floating mb-3">
+              <input type="email" class="form-control" id="forgotEmail" placeholder="Enter your email" formControlName="email">
+              <label for="forgotEmail">Email address</label>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Send Reset Link</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

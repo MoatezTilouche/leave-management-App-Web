@@ -1,0 +1,24 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-2 sidebar">
+      <app-sidebar></app-sidebar>
+    </div>
+    <div class="col-md-10 content" >
+      <div class="fixed-navbar">
+        <app-navbar></app-navbar>
+      </div>
+      <div class="content-wrapper mt-2">
+
+        <div class="container mt-4" style="background-color: white;">
+          <div class="row">
+            <div class="col">
+              <h2 class="text-center">Accepted Leave Requests Calendar</h2>
+              <full-calendar [options]="calendarOptions"></full-calendar>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,43 @@
+
+<div class="container mx-auto p-4">
+  <div class="relative table-container" style="background-color: white;">
+    <br/>
+    <h2 class="text-xl font-bold mb-4 text-center">Leave Requests</h2>
+    <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700">
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+      <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        <tr>
+          <th scope="col" class="px-6 py-3">Employee Name</th>
+          <th scope="col" class="px-6 py-3">Type of Leave</th>
+          <th scope="col" class="px-6 py-3">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of conges" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+          <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+            <ng-container *ngIf="item.employeName && item.employeName.name; else unknownName">
+              {{ item.employeName.name }}
+            </ng-container>
+            <ng-template #unknownName>
+              {{ item.employeName || 'Unknown' }}
+            </ng-template>
+          </th>
+          <td class="px-6 py-4">{{ item.conge.typeConge }}</td>
+          <td class="px-6 py-4">
+            <span [ngClass]="{
+              'text-green-500': item.conge.statut === 'accepted',
+              'text-yellow-500': item.conge.statut === 'pending',
+              'text-red-500': item.conge.statut === 'rejected'
+            }">
+              <i [ngClass]="{
+                'bi bi-check-circle-fill': item.conge.statut === 'accepted',
+                'bi bi-hourglass-split': item.conge.statut === 'pending',
+                'bi bi-ban-fill': item.conge.statut === 'rejected'
+              }"></i>
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

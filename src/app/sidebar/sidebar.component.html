@@ -1,0 +1,91 @@
+<div [ngClass]="{'sidebar-collapsed': isCollapsed, 'sidebar-expanded': !isCollapsed}" class="d-flex flex-column flex-shrink-0 p-3 bg-custom text-blue-500" style="height: 100vh;" id="sidebar">
+  <div class="d-flex justify-content-between align-items-center mb-2">
+    <a routerLink="/" class="d-flex align-items-center text-dark text-decoration-none">
+      <img src="assets/logo.png" alt="Logo" width="120" height="60" class="me-2">
+    </a>
+    <button [ngClass]="{'btn-collapsed': isCollapsed ,'btn-expanded':!isCollapsed}" class="btn btn-outline-primary" (click)="toggleSidebar()">
+      <i class="bi bi-list"></i>
+    </button>
+  </div>
+  <hr>
+  <br/>
+  <ul class="nav nav-pills flex-column mb-auto" [ngClass]="{'d-none': isCollapsed}">
+    <li class="nav-item">
+      <a routerLink="/dashboard" routerLinkActive="active" class="nav-link">
+        <i class="bi bi-house-door-fill me-2"></i>
+        Dashboard
+      </a>
+    </li>
+    <br/>
+    <li class="nav-item">
+      <a routerLink="/requests" routerLinkActive="active" class="nav-link text-blue-500">
+        <i class="bi bi-columns-gap me-2"></i>
+        Requests
+      </a>
+      <br/>
+    </li>
+    
+    <li class="nav-item" *ngIf="permissions!='R' ">
+      <a routerLink="/addEmp" routerLinkActive="active" class="nav-link">
+        <i class="bi bi-person-plus me-2"></i>
+        Add Employee
+      </a>
+      <br/>
+    </li>
+    
+    <li class="nav-item">
+      <a routerLink="/employes" routerLinkActive="active" class="nav-link">
+        <i class="bi bi-table me-2"></i>
+        Employees
+      </a>
+    </li>
+    <br/>
+    <li class="nav-item" >
+      <a routerLink="/admins" routerLinkActive="active" class="nav-link" >
+        <i class="bi bi-database me-2"></i>
+        Administrators
+      </a>
+      <br/>
+    </li>
+    
+    <li class="nav-item">
+      <a routerLink="/calendar" routerLinkActive="active" class="nav-link text-outline-primary">
+        <i class="bi bi-calendar3 me-2"></i>
+        Calendar
+      </a>
+    </li>
+    
+    <li class="nav-item" *ngIf="permissions!='All'">
+      <br/>
+      <a routerLink="/admins" routerLinkActive="active" class="nav-link" >
+        <i class="bi bi-calendar2-plus me-2"></i>
+        Request a Leave
+      </a>
+      <br/>
+    </li>
+  </ul>
+  <hr class="border-gray-200 dark:border-gray-700">
+  <div class="d-flex flex-column mb-2">
+    <div class="div">
+    <img class="h-10 w-10 rounded-full me-2" [src]="photo ? photo : 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80'" alt="User photo">
+   
+   
+  </div>
+    <div class="d-flex flex-column">
+      <span style="font-size: 16px;">{{name}}</span>
+      <span style="font-size: 14px; color: gray;">{{email}}</span>
+    </div>
+    <div class="btn-group ms-auto" style="width: 100%;">
+      <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" style="color: black; font-size: 1rem;">
+        <i class="bi bi-three-dots"></i>
+      </button>
+      <ul class="dropdown-menu dropdown-menu-end">
+        <li><a class="dropdown-item" (click)="viewProfileDetails(id)">Profile</a></li>
+        <li><a class="dropdown-item" href="#">Settings</a></li>
+        <li><hr class="dropdown-divider"></li>
+        <li><a class="dropdown-item" (click)="signOut()">Sign out</a></li>
+      </ul>
+    </div>
+ 
+  </div>
+</div>
