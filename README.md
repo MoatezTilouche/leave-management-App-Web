@@ -72,7 +72,4 @@ Feel free to open an issue or submit a pull request.
 This project is licensed under the MIT License.  
 See the LICENSE file for details.
 
----
 
-Enjoy using the Leave Management App Web!  
-Let me know if you’d like to add screenshots, project-specific instructions, or anything else! 🚀
