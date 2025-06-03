@@ -1,27 +1,78 @@
-# AngularAdminWeb
+# Leave Management App Web
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.3.
+A front-end web application for managing employee leave requests, built using **Angular** and styled with **Tailwind CSS**.
 
-## Development server
+---
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## 🌟 Features
 
-## Code scaffolding
+- Submit and track leave requests
+- View pending, approved, and rejected leaves
+- Intuitive dashboard (if implemented)
+- Modern, responsive UI using Tailwind CSS
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+---
 
-## Build
+## 🚀 Technologies Used
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- Angular
+- Tailwind CSS
+- TypeScript
+- Node.js / npm
 
-## Running unit tests
+---
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## 📁 Project Structure
 
-## Running end-to-end tests
+    .vscode/              VSCode editor settings
+    src/                  Source code of the application
+    .editorconfig         Editor configuration
+    .gitignore            Git ignore file
+    README.md             Project documentation
+    angular.json          Angular workspace configuration
+    package-lock.json     Exact versions of dependencies
+    package.json          Project dependencies and scripts
+    tailwind.config.js    Tailwind CSS configuration
+    tsconfig.app.json     TypeScript config for the app
+    tsconfig.json         Global TypeScript configuration
+    tsconfig.spec.json    TypeScript config for tests
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+---
 
-## Further help
+## 🛠️ Getting Started
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+1. Clone the repository:
+
+       git clone https://github.com/<your-username>/leave-management-app-web.git
+       cd leave-management-app-web
+
+2. Install dependencies:
+
+       npm install
+
+3. Run the development server:
+
+       ng serve
+
+4. Open your browser and navigate to:
+
+       http://localhost:4200/
+
+---
+
+## 🤝 Contributing
+
+Have suggestions or found a bug? Contributions are welcome!  
+Feel free to open an issue or submit a pull request.
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License.  
+See the LICENSE file for details.
+
+---
+
+Enjoy using the Leave Management App Web!  
+Let me know if you’d like to add screenshots, project-specific instructions, or anything else! 🚀
